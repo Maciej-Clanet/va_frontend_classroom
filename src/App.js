@@ -1,9 +1,13 @@
 import './App.css';
 import AllRoutes from './AllRoutes';
+import { useTheme } from './Contexts/ThemeContext';
 
 function App() {
+
+  const {theme} = useTheme()
+
   return (
-    <div className="App">
+    <div id="App" className={theme}>
       <AllRoutes/>
     </div>
   );
