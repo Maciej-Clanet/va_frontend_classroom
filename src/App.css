@@ -21,3 +21,10 @@
   min-height: 100vh;
   text-align: center;
 }
+
+/*text*/
+.text-title{
+  font-size: 22px;
+  line-height: 53px;
+  letter-spacing: 0%;
+}

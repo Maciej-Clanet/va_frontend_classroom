@@ -1,0 +1,16 @@
+.logo-container{
+    color: var(--background-color);
+    background-color: var(--accent-color);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+
+    -webkit-box-shadow: inset -4px -4px 0px 0px #08311E, inset 4px 4px 0px 0px #3DE145; 
+    box-shadow: inset -4px -4px 0px 0px #08311E, inset 4px 4px 0px 0px #3DE145;
+    
+    user-select: none;
+    cursor: pointer;
+}
