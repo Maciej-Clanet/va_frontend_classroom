@@ -1,0 +1,7 @@
+.auth-page-container{
+    padding-top: 64px;
+
+    & h2{
+        color: var(--accent-color);
+    }
+}
