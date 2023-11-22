@@ -19,4 +19,8 @@
         padding: 0px 64px;
 
     }
+
+    & svg{
+        fill: vaR(--text-color)
+    }
 }
