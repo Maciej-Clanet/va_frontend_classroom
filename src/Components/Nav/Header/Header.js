@@ -6,7 +6,7 @@ import PrimaryButton from "../PrimaryButton/PrimaryButton"
 
 import { useNavigate } from "react-router-dom"
 
-import {ReactComponent as TempIcon} from "../../../Assets/Icons/SearchIcon.svg"
+import {ReactComponent as UserIcon} from "../../../Assets/Icons/UserIcon.svg"
 
 
 const Header = () => {
@@ -19,7 +19,7 @@ const Header = () => {
             <SearchBar/>
             <PrimaryButton 
                 text="Sign In" 
-                icon={<TempIcon/>} 
+                icon={<UserIcon/>} 
                 action={() => navigate("/login")}
                 />
         </header>
