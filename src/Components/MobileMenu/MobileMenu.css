@@ -1,0 +1,14 @@
+.mobile-menu{
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 16px;
+
+    position:fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}

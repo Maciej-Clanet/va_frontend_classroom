@@ -7,7 +7,7 @@ const Home = () => {
             <SectionHeading text="my heading"/>
             <SectionHeading text="This is a longer heading" active={true}/>
            <ThemeToggleButton/>
- 
+
             Home page
         </>
     )

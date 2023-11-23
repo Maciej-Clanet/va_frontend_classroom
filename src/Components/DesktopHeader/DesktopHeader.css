@@ -1,0 +1,9 @@
+.desktop-header{
+    display: none;
+}
+
+@media (min-width:800px){
+    .desktop-header{
+        display: flex;
+    }
+}
