@@ -1,0 +1,32 @@
+.theme-toggle-button{
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &.light-theme{
+        border: 1px solid var(--text-color);
+
+        & svg{
+            fill: none;
+            stroke: var(--text-color);
+            stroke-width: 2px;
+        }
+    }
+    &.dark-theme{
+        background-color: rgb(75, 75, 75);
+        & svg{
+            /* fill: var(--accent-color); */
+            fill: none;
+            stroke: var(--accent-color);
+            stroke-width: 2px;
+        }
+    }
+    
+    
+}
