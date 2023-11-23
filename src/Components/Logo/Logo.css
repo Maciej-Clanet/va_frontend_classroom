@@ -9,6 +9,9 @@
     border-radius: 16px;
     -webkit-box-shadow: inset -4px -4px 0px 0px #08311E, inset 4px 4px 0px 0px #3DE145;
     box-shadow: inset -4px -4px 0px 0px #08311E, inset 4px 4px 0px 0px #3DE145;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
     user-select: none;
     cursor: pointer;
