@@ -11,7 +11,7 @@
     border-radius: 8px;
 
     gap: 8px;
-    padding: 8px 16px;
+    padding: 4px 16px;
     
     & svg{
         fill: var(--on-primary-color); ;  
