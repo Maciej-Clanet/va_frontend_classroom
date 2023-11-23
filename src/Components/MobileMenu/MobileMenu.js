@@ -1,9 +1,13 @@
 import "./MobileMenu.css"
+import MobileNavLink from "../MobileNavLink/MobileNavLink";
 
 const MobileMenu = () => {
     return(
         <div className="mobile-menu">
-            stuff will be here
+            <MobileNavLink text="Home" path="/"/>
+            <MobileNavLink text="Learn" path="/Learn"/>
+            <MobileNavLink text="Shop" path="/Shop"/>
+            <MobileNavLink text="Explore" path="/Explore"/>
         </div>
     )
 }

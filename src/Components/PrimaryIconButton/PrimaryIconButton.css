@@ -1,0 +1,21 @@
+.primary-icon-button{
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 16px;
+
+    cursor: pointer;
+
+    & svg{
+        fill: var(--on-primary-color);
+    }
+
+    &:hover{
+        filter: brightness(120%);
+    }
+}
