@@ -1,0 +1,44 @@
+.featured-artist-thumbnail{
+    width: 316px;
+    height: 230px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+
+    user-select: none;
+
+    &:hover img{
+        transform: scale(1.2);
+    }
+
+    & img{
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    & .artist-info{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+
+        background: rgb(0,0,0);
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+
+        & span:first-of-type{
+            color: var(--text-color);
+        }
+        & span:nth-of-type(2){
+            color: var(--primary-color);
+            opacity: 0.6;
+        }
+
+    }
+
+    
+}
