@@ -13,7 +13,7 @@ const ProductCard = ({image, title, artist, avatar, price,productLink}) =>{
                 <div className="product-info-row">
                     <img src={avatar}/>
                     <span className="text-label prominent">by {artist}</span>
-                    <span className="text-label prominent product-price">£{price}</span>
+                    <span className="text-label prominent product-price">£{price.toFixed(2)}</span>
                 </div>
             </div>
         </div>

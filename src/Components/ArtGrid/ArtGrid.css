@@ -1,0 +1,27 @@
+.art-grid{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    /* gap: 8px; */
+    /* width: 1350px; */
+    /* margin: auto; */
+    border: 1px solid red;
+    gap: 8px;
+    /* justify-content: space-evenly; */
+}
+
+/* @media (max-width: 1375px){
+    .art-grid{
+        width: 900px;
+    }
+}
+@media (max-width: 950px){
+    .art-grid{
+        width: 700px;
+    }
+}
+@media (max-width: 750px){
+    .art-grid{
+        width: 450px;
+    }
+} */

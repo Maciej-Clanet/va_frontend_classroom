@@ -10,15 +10,17 @@ import ProductCard from "../Components/ProductCard/ProductCard";
 import ProductImage from "../Assets/Temp/ProductThumbnail.png";
 import AvatarImage from "../Assets/Temp/Avatar.png"
 
+import ArtGrid from "../Components/ArtGrid/ArtGrid";
+
 const Home = () => {
     return (
         <>
             <FeaturedArtistThumbnail artistName="goober" artistProfession="hoe" profileLink="/user/goober" image={tempArtistImage}/>
             <SectionHeading text="Trending this week"/>
-            <ArtworkThumbnail image={tempArtworkThumbnail} artist="goober" title="test" imageLink="/test/image" />
+            <ArtGrid rows={2}/>
             <SectionHeading text="Popular on the Marketplace" active={true}/>
             <ProductCard image={ProductImage} title="Test title" artist="goober" price={3.50} avatar={AvatarImage} productLink="/products/testproduct"/>
-
+            
             
 
         </>
