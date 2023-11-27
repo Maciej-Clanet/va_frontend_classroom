@@ -12,27 +12,35 @@ const ArtGrid = ({rows}) => {
     function getMaxPerRow(){
         const cardWidth = 211;
         const gapSize = 8;
+        const padding = 32;
 
+        // const container = document.querySelector(".art-grid");
         const totalWidth = window.innerWidth;
         let maxItems = Math.floor(totalWidth / (cardWidth + gapSize))
-    
-        const buffer = 1;
-
-        while ((maxItems - 1) * gapSize + maxItems * cardWidth + buffer > totalWidth) {
+        
+        while ((maxItems - 1) * gapSize + maxItems * cardWidth + padding > totalWidth) {
             console.log("adjusting")
             maxItems--;
         }
+
         return maxItems
     }
 
-    function updateThumbnails(){
-        let newThumbnails = []
-            for(let i = 0; i < getMaxPerRow() * rows; i++){
-                newThumbnails.push(
-                        <ArtworkThumbnail key={i} image={tempArtworkThumbnail} artist="goober" title="test" imageLink="/test/image" />
-                    )
+    function updateThumbnails(){    
+        const maxPerRow = getMaxPerRow()
+        const newThumbnailsGrid = []
+
+        for (let i = 0; i < rows; i++){
+            const rowThumbnails = []
+            for (let j = 0; j < maxPerRow; j++){
+                rowThumbnails.push(
+                    <ArtworkThumbnail key={`${i}-${j}`} image={tempArtworkThumbnail} artist="goober" title="test" imageLink="/test/image" />
+                )
             }
-            setThumbnails(newThumbnails)
+            newThumbnailsGrid.push(rowThumbnails)
+        }
+
+        setThumbnails(newThumbnailsGrid)
     }
 
     useEffect(() => {
@@ -51,10 +59,13 @@ const ArtGrid = ({rows}) => {
 
     return(
         <div className="art-grid">
-            {thumbnails}
-            {/* {            
-                [...Array(getMaxPerRow() * rows)].map(thumb => <ArtworkThumbnail image={tempArtworkThumbnail} artist="goober" title="test" imageLink="/test/image" /> )
-            } */}
+
+            {thumbnails.map((row, i) => (
+                <div key={`row${i}`} className="art-grid-row">
+                    {row}
+                </div>
+            ))}
+
         </div>
     )
 }
