@@ -15,7 +15,7 @@ import ArtGrid from "../Components/ArtGrid/ArtGrid";
 const Home = () => {
     return (
         <>
-            <FeaturedArtistThumbnail artistName="goober" artistProfession="hoe" profileLink="/user/goober" image={tempArtistImage}/>
+            <FeaturedArtistThumbnail artistName="goober" artistProfession="Unemployed" profileLink="/user/goober" image={tempArtistImage}/>
             <SectionHeading text="Trending this week"/>
             <ArtGrid rows={2}/>
             <SectionHeading text="Popular on the Marketplace" active={true}/>
