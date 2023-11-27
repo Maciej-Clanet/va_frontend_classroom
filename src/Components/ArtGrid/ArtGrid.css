@@ -1,17 +1,13 @@
 .art-grid{
     display: flex;
-    /* flex-wrap:wrap; */
-    justify-content: center;
-    gap: 8px;
-    /* border: 1px solid red; */
-    flex-direction: column;
-    padding-top: 32px;
+    gap: 8px;   /*this will be gap betweenn rows*/
+    flex-direction: column;  /*make sure rows are under each other*/
+    padding-top: 32px; /*space art grid away from the heading*/
     padding-bottom: 32px;
 }
 
 .art-grid-row{
-    /* border: 1px solid blue; */
     display: flex;
-    gap: 8px;
-    justify-content: center;
+    gap: 8px; /*gap between thumbnails in the row*/
+    justify-content: center; 
 }
