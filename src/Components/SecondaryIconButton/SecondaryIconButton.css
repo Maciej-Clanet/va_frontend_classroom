@@ -1,0 +1,21 @@
+.secondary-icon-button{
+    border: none;
+    border-radius: 8px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 16px;
+
+    cursor: pointer;
+
+    & svg{
+        fill: var(--text-color);
+    }
+
+    &:hover{
+        filter: brightness(120%);
+    }
+}

@@ -1,8 +1,25 @@
 .desktop-header{
     display: none;
+
+    /* border: 1px solid red; */
+    padding: 16px 32px;
+    gap: 32px;
+    align-items: center;
 }
 
-@media (min-width:800px){
+.desktop-nav-links-container{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-action-button-group{
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+@media (min-width: 1200px){
     .desktop-header{
         display: flex;
     }

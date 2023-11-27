@@ -3,7 +3,9 @@
 
 .dark-theme{
   --text-color: #f1fce9;
+  --on-image-color: #f1fce9;
   --background-color: #000000;
+  --product-card-background: #181818;
   --accent-color: #27dd8b;
   --primary-color: #3de145;
   --on-primary-color: #272727;
@@ -11,7 +13,9 @@
 }
 .light-theme{
   --text-color: #000000;
+  --on-image-color: #f1fce9;
   --background-color: #f1fce9;
+  --product-card-background: #27dd8b;
   --accent-color: #27dd8b;
   --primary-color: #3de145;
   --on-primary-color: #272727;
