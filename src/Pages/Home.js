@@ -8,6 +8,7 @@ import ProductCard from "../Components/ProductCard/ProductCard";
 import ProductImage from "../Assets/Temp/ProductThumbnail.png";
 import AvatarImage from "../Assets/Temp/Avatar.png"
 
+import ArtGrid from "../Components/ArtGrid/ArtGrid";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <>
             <FeaturedArtistThumbnail artistName="goober" artistProfession="unemployed" profileLink="/user/goober" image={tempArtistImage} />
             <SectionHeading text="Trending this week" />
+            <ArtGrid rows={2}/>
             <SectionHeading text="Popular on the Marketplace" active={true} />
             <ProductCard image={ProductImage} title="Test title" artist="goober" price={3.50} avatar={AvatarImage} productLink="/products/testproduct" />
         </>
