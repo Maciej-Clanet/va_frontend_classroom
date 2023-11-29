@@ -1,0 +1,56 @@
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    gap: 16px;
+
+    & label{
+        font-size: 26px;
+        font-weight: 700;
+        text-align: left;
+        color: var(--accent-color)
+    }
+
+    & input{
+        padding: 16px;
+        border: 2px solid var(--accent-color); 
+        
+        border-radius: 8px;
+        background: none;
+        color: var(--accent-color);
+
+        &:focus{
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            outline-color: var(--primary-color);
+            outline: none;
+        }
+    }
+
+    ::placeholder{
+        color: var(--accent-color); 
+    }
+
+    & button{
+        background: none;
+        border: 3px solid var(--accent-color);
+        border-radius: 8px;
+        
+        color: var(--accent-color);
+        
+        cursor: pointer;
+        
+        align-self: center;
+
+        padding: 8px 16px;
+        font-size: 24px;
+
+        &:hover{
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+    }
+
+}

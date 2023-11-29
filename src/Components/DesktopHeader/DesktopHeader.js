@@ -6,11 +6,13 @@ import SecondaryIconButton from "../SecondaryIconButton/SecondaryIconButton";
 import IconButton from "../IconButton/IconButton";
 import ThemeToggleButton from "../ThemeToggleButton/ThemeToggleButton";
 import SearchBar from "../SearchBar/SearchBar";
+import ProfileButton from "../ProfileButton/ProfileButton";
 
 import {ReactComponent as UserIcon} from "../../Assets/Icons/UserIcon.svg";
 import {ReactComponent as PencilIcon} from "../../Assets/Icons/PencilIcon.svg";
 import {ReactComponent as CartIcon} from "../../Assets/Icons/CartIcon.svg"
 import {useNavigate} from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext";
 
 const DesktopNavLinks = () =>{
     return(
@@ -25,6 +27,8 @@ const DesktopNavLinks = () =>{
 
 const DesktopHeader = () =>{
     const navigate = useNavigate()
+    const {username, logout} = useAuth()
+
     return(
         <header className="desktop-header">
             <Logo/>
@@ -32,8 +36,10 @@ const DesktopHeader = () =>{
             <SearchBar/>
             <div className="header-action-button-group">
                 <IconButton icon={<CartIcon/>} onClick={() => navigate("/cart")} />
-                <PrimaryIconButton text="Sign In" icon={<UserIcon/>} onClick={() => navigate("/login")} />
-                <SecondaryIconButton text="Sign Up" icon={<PencilIcon/>} onClick={() => navigate("/register")} />
+                {username && <ProfileButton/>}
+                {username && <SecondaryIconButton text="Sign Out" icon={<PencilIcon/>} onClick={() => {logout(); navigate("/login")}} />}
+                {!username && <PrimaryIconButton text="Sign In" icon={<UserIcon/>} onClick={() => navigate("/login")} /> }
+                {!username && <SecondaryIconButton text="Sign Up" icon={<PencilIcon/>} onClick={() => navigate("/register")} /> }
                 <ThemeToggleButton />
             </div>
         </header>

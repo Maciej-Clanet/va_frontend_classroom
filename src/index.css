@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  /*constant colors*/
+  --error-color: rgb(246, 105, 105);
+  --on-error-color: rgb(255, 251, 251);
+
 }
 
 code {
