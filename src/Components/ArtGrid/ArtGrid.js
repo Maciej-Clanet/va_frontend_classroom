@@ -1,108 +1,125 @@
 import "./ArtGrid.css"
 import ArtworkThumbnail from "../ArtworkThumbnail/ArtworkThumbnail"
 import tempArtworkThumbnail from "../../Assets/Temp/ArtworkThumb.png"
-
-import { useEffect } from "react"
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import axios from "axios"
 
-const ArtGrid = ({ rows, type = "new" }) => {
-    const [thumbnailsData, setThumbnailsData] = useState([])
-    const [thumbnails, setThumbnails] = useState([]);
+const ArtGrid = ({rows}) => {
+    const [thumbnails, setThumbnails] = useState([])
+    const [thumbData, setThumbData] = useState([])
+    const [isLoading, setIsloading] = useState(false)
 
-    function getMaxPerRow() {
+    function getMaxPerRow(){
         const cardWidth = 211;
-        const gapSize = 8;
+        const gap = 8;
         const padding = 16;
 
         const totalWidth = window.innerWidth;
-        let maxItems = Math.floor(totalWidth / (cardWidth + gapSize + padding))
 
-        return maxItems
+        const maxItems = Math.floor(   totalWidth / ( cardWidth + gap + padding ) )
+        return maxItems;
+
     }
+    function updateThumbnails(data){
 
-    function updateThumbnails(data) {
-        console.log("received data: ", data)
+        
+
         const maxPerRow = getMaxPerRow()
         const newThumbnailsGrid = []
         let thumbIndex = 0
 
-        for (let i = 0; i < rows; i++) {
+        for(let i = 0; i < rows; i++){
             const rowThumbnails = []
-            for (let j = 0; j < maxPerRow; j++) {
-                const thumbnail = data[thumbIndex]
-                if(thumbnail){
+            for(let j = 0; j < maxPerRow; j++){
+
+                //if the thumbnail is not in memory
+                if(thumbIndex >= data.length){
+                    //create default
                     rowThumbnails.push(
-                        <ArtworkThumbnail key={`${i}-${j}`} image={tempArtworkThumbnail} artist="goober" title={thumbnail["title"]} imageLink="/test/image" />
+                        <ArtworkThumbnail 
+                            key={`${i}-${j}`}
+                            image={tempArtworkThumbnail}
+                            artist="goober"
+                            title="test"
+                            imageLink="/art/test"
+                            loading={true}
+                        /> 
                     )
                 }else{
-                    rowThumbnails.push(<ArtworkThumbnail key={`${i}-${j}`} image={tempArtworkThumbnail} artist="goober" title="default" imageLink="/test/image" />)
+                    //create based on data
+                    const artworkInfo = data[thumbIndex];
+                    rowThumbnails.push(
+                        <ArtworkThumbnail 
+                            key={`${i}-${j}`}
+                            image={tempArtworkThumbnail}
+                            artist={artworkInfo["user_id"]}
+                            title={artworkInfo["title"]}
+                            imageLink="/art/test"
+                            loading={false}
+                        /> 
+                    )
                 }
-
-                thumbIndex++;
+                thumbIndex++
             }
             newThumbnailsGrid.push(rowThumbnails)
         }
-        setThumbnails(newThumbnailsGrid)
+        setThumbnails(newThumbnailsGrid);
     }
 
 
+    function getData(){
+
+        console.log(isLoading)
+        if(thumbData.length >= getMaxPerRow() * rows || isLoading){ 
+            console.log(thumbData.length, getMaxPerRow() * rows, " - no need to fetch more, ignoring get - ", isLoading)
+            updateThumbnails(thumbData)
+            return
+        }
+        updateThumbnails(thumbData);
+
+        setIsloading(true)
+        axios.post("http://localhost:8000/art/newest", {amount: getMaxPerRow() * rows})
+        .then((res) => {
+            // console.log(res.data)
+            console.log("updating based on new data")
+            setThumbData(res.data)
+            updateThumbnails(res.data)
+        })
+        .catch((error) => {
+            console.log("error fetching: " ,error.message)
+        })
+        .finally(() => {
+            setIsloading(false)
+        })
+    }
+
     useEffect(() => {
-
-
-        function getData(){
-            if(type == "new"){
-                console.log("fetching new")
-                axios.post("http://localhost:8000/art/newest", { amount: rows * getMaxPerRow() } )
-                .then(res => {
-                    console.log(res.data)
-                    setThumbnailsData(res.data);
-                    updateThumbnails(res.data);
-                })
-                .catch(error => {
-                    console.error("error fetching thumbnails: ", error)
-                })
-            }
-        }
-        
         getData()
-        // updateThumbnails()
 
-        const handleResize = () => {
-  
-                getData()
-            
+        const handleResize = () =>{
+            getData();
         }
+
         window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener("rezise", handleResize);
+            window.removeEventListener("resize", handleResize);
         }
 
-    }, [thumbnailsData])
+    },[thumbData])
 
-    return (
+    return(
         <div className="art-grid">
-            {thumbnails.map((row, i) => (
-                <div key={`row${i}`} className="art-grid-row">
-                    {row}
-                </div>
-            ))}
+            {
+                thumbnails.map((row, i) => (          
+                    <div key={`row-${i}`} className="art-grid-row">
+                        {row}    
+                    </div> 
+                ))
+            }
+            {/* {thumbData.map((item, i) => <div>{i} - {JSON.stringify(item)}</div>)} */}
         </div>
     )
 }
 
-export default ArtGrid;
-
-
-
-// function getThumbnailsData(){
-//     axios.post("http://localhost/art/newest", getMaxPerRow * rows)
-//     .then((res) => {
-//         alert(res)
-//         setThumbnailsData(res)
-//     })
-//     .catch((err) => {
-//         alert(err)
-//     })
-// }
+export default ArtGrid
