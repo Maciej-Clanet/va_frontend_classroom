@@ -1,13 +1,13 @@
 import "./ArtGrid.css"
 import ArtworkThumbnail from "../ArtworkThumbnail/ArtworkThumbnail"
 import tempArtworkThumbnail from "../../Assets/Temp/ArtworkThumb.png"
-import {useEffect, useState} from "react"
+import {useEffect, useState, useRef} from "react"
 import axios from "axios"
 
 const ArtGrid = ({rows}) => {
     const [thumbnails, setThumbnails] = useState([])
     const [thumbData, setThumbData] = useState([])
-    const [isLoading, setIsloading] = useState(false)
+    const isLoading = useRef(false)
 
     function getMaxPerRow(){
         const cardWidth = 211;
@@ -70,14 +70,15 @@ const ArtGrid = ({rows}) => {
     function getData(){
 
         console.log(isLoading)
-        if(thumbData.length >= getMaxPerRow() * rows || isLoading){ 
+        if(thumbData.length >= getMaxPerRow() * rows || isLoading.current){ 
             console.log(thumbData.length, getMaxPerRow() * rows, " - no need to fetch more, ignoring get - ", isLoading)
             updateThumbnails(thumbData)
             return
         }
+        //there are existing items and we are not currently loading more data
         updateThumbnails(thumbData);
 
-        setIsloading(true)
+        isLoading.current = true
         axios.post("http://localhost:8000/art/newest", {amount: getMaxPerRow() * rows})
         .then((res) => {
             // console.log(res.data)
@@ -89,7 +90,7 @@ const ArtGrid = ({rows}) => {
             console.log("error fetching: " ,error.message)
         })
         .finally(() => {
-            setIsloading(false)
+            isLoading.current = false
         })
     }
 
