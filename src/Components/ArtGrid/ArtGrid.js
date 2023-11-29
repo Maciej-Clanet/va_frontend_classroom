@@ -51,10 +51,10 @@ const ArtGrid = ({rows}) => {
                     rowThumbnails.push(
                         <ArtworkThumbnail 
                             key={`${i}-${j}`}
-                            image={tempArtworkThumbnail}
-                            artist={artworkInfo["user_id"]}
+                            image={artworkInfo["thumbnail_path"]}
+                            artist={artworkInfo["username"]}
                             title={artworkInfo["title"]}
-                            imageLink="/art/test"
+                            imageLink={`/${artworkInfo["username"]}/${artworkInfo["title"]}`}
                             loading={false}
                         /> 
                     )

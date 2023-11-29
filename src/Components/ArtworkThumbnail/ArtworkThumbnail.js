@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 const ArtworkThumbnail = ({image, title, artist, imageLink, loading}) => {
     const navigate = useNavigate()
+
     return(
         <div className="artwork-thumbnail" onClick={() => navigate(imageLink)}>
             <img src={image}/>
