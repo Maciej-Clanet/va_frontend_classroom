@@ -22,8 +22,6 @@ const ArtGrid = ({rows}) => {
     }
     function updateThumbnails(data){
 
-        
-
         const maxPerRow = getMaxPerRow()
         const newThumbnailsGrid = []
         let thumbIndex = 0
@@ -118,7 +116,6 @@ const ArtGrid = ({rows}) => {
                     </div> 
                 ))
             }
-            {/* {thumbData.map((item, i) => <div>{i} - {JSON.stringify(item)}</div>)} */}
         </div>
     )
 }
