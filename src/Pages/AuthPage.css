@@ -1,0 +1,20 @@
+.auth-page-container{
+    padding-top: 64px;
+
+    & h2{
+        color: var(--accent-color);
+    }
+}
+
+.login-error{
+    background-color: var(--error-color);
+    color: var(--on-error-color);
+    text-align: center;
+    border-radius: 8px;
+    padding: 4px 16px;
+
+    position: fixed;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%)
+}
