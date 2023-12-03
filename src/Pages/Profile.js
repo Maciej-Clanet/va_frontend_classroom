@@ -5,14 +5,14 @@ import { useState , useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import SectionHeading from "../Components/SectionHeading/SectionHeading"
 
-import UpdateBioForm from "../Forms/UpdateBioForm/UpdateBioForm"
+import ProfileBio from "../Components/ProfileBio/ProfileBio"
 
 const Profile = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [profileData, setProfileData] = useState()
 
-    const [updatingBio, setUpdatingBio] = useState(false)
+   
 
     const navigate = useNavigate()
     const {userId} = useAuth()
@@ -37,14 +37,8 @@ const Profile = () => {
     return(
         <>
             {JSON.stringify(profileData)}
-            <SectionHeading text="Bio"/>
+           <ProfileBio bio={profileData["bio"]} />
             
-            {!profileData["bio"] && <div>You don't have a bio. <button>Create One</button></div>}
-            {profileData["bio"] && profileData["bio"]}
-            {profileData["bio"] && <button onClick={() => setUpdatingBio(!updatingBio)} >update bio</button>}
-
-            {updatingBio && <UpdateBioForm/>}
-
             <SectionHeading text="Art Categories" />
             {
             profileData["art_categories"].map((category) => {
