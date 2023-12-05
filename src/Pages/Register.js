@@ -24,7 +24,7 @@ const Register = () =>{
             navigate("/")
         })
         .catch((err) => {
-            setError(err.response.data.detail)
+            setError(err.response?.data?.detail || err.message || "An Unknown errror occured")
         })
     }
 

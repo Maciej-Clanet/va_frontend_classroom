@@ -24,7 +24,7 @@ const Profile = () => {
             setIsLoading(false)
         })
         .catch((err) => {
-            setError(err.message)
+            setError(err.response?.data?.detail || err.message || "An Unknown errror occured")
             setIsLoading(false)
         })
     },[])
