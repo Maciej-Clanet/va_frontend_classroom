@@ -27,11 +27,12 @@ const Register = () =>{
             localStorage.setItem("userId", res.data.id)
             localStorage.setItem("username", res.data.username)
 
-            navigate("/")
+            navigate("/profile")
         } )
         .catch( (err) => {
             //if there was an error
-            setError(err.response.data.detail)
+            //if we got an response, display that, otherwise display the axios err message, if even that is missing, default to unknown error text
+            setError(err.response?.data?.detail || err.message || "An Unknown error occured")
         })
 
 

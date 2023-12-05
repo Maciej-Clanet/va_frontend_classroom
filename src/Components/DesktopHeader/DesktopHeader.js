@@ -12,6 +12,9 @@ import {ReactComponent as PencilIcon} from "../../Assets/Icons/PencilIcon.svg";
 import {ReactComponent as CartIcon} from "../../Assets/Icons/CartIcon.svg"
 import {useNavigate} from "react-router-dom";
 
+import { useAuth } from "../../Contexts/AuthContext";
+import ProfileButton from "../ProfileButton/ProfileButton";
+
 const DesktopNavLinks = () =>{
     return(
         <div className="desktop-nav-links-container">
@@ -25,6 +28,8 @@ const DesktopNavLinks = () =>{
 
 const DesktopHeader = () =>{
     const navigate = useNavigate()
+
+    const {username, logout} = useAuth();
     return(
         <header className="desktop-header">
             <Logo/>
@@ -32,8 +37,10 @@ const DesktopHeader = () =>{
             <SearchBar/>
             <div className="header-action-button-group">
                 <IconButton icon={<CartIcon/>} onClick={() => navigate("/cart")} />
-                <PrimaryIconButton text="Sign In" icon={<UserIcon/>} onClick={() => navigate("/login")} />
-                <SecondaryIconButton text="Sign Up" icon={<PencilIcon/>} onClick={() => navigate("/register")} />
+                {!username && <PrimaryIconButton text="Sign In" icon={<UserIcon/>} onClick={() => navigate("/login")} /> }
+                {!username && <SecondaryIconButton text="Sign Up" icon={<PencilIcon/>} onClick={() => navigate("/register")} /> }
+                {username && <ProfileButton/>}
+                {username && <SecondaryIconButton text="Sign Out" icon={<PencilIcon/>} onClick={() => {logout(); navigate("/login")} }/> }
                 <ThemeToggleButton />
             </div>
         </header>
