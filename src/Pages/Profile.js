@@ -1,36 +1,82 @@
 import "./Profile.css"
 
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
-import {useAuth} from "../Contexts/AuthContext"
+import { useAuth } from "../Contexts/AuthContext"
 import SectionHeading from "../Components/SectionHeading/SectionHeading"
 
 
 const Profile = () => {
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [profileData, setProfileData] = useState()
 
-    const {userId, username} = useAuth()
+    const [modifyingProfession, setModifyingProfession] = useState(false)
+    const [newProfession, setNewProfession] = useState()
+
+    const { userId, username } = useAuth()
 
     useEffect(() => {
-
+        axios.post("http://localhost:8000/users/profile", { "user_id": userId })
+            .then((res) => {
+                setProfileData(res.data)
+                setIsLoading(false)
+            })
+            .catch((err) => {
+                setError(err.response?.data?.detail || err.message || "An Unknown error occured")
+                setIsLoading(false)
+            })
         //make a post axios call to http://localhost:8000/users/profile, send it an OBJECT with a "user_id"
         //HINT, look at the /docs for backend, when you "try out the endpoint" the data you are sending needs to look exactly how it looks there
 
-    },[])
+    }, [])
 
-    if(isLoading){return <div>Loading...</div>}
-    if(error){return <div>{error}</div>}
-    
-    return(
+
+    function updateProfession(){
+        alert("tried to udpate profession")
+        
+        //prevent page from refreshing
+        //axios post call to the update profile endpoint
+        //going to give it the id and the new profile
+        //once it's done, we refresh the page to load new data
+    }
+
+
+
+    if (isLoading) { return <div>Loading...</div> }
+    if (error) { return <div>{error}</div> }
+
+    return (
         <>
-            <SectionHeading text="Details"/>
+            {JSON.stringify(profileData)}
+            <SectionHeading text="Details" />
+
+            Profession:
+            {profileData["profession"] && <div>{profileData["profession"]}
+                <button onClick={() => setModifyingProfession(!modifyingProfession)}>change profession</button>
+            </div>}
+            {!profileData["profession"] && <div>You don't have a profession set
+                <button onClick={() => setModifyingProfession(!modifyingProfession)}>set profession</button>
+            </div>}
+
+
+            {
+                modifyingProfession && <form onSubmit={updateProfession}>
+                    <input 
+                        type="text" 
+                        value={newProfession}
+                        onChange={(e) => setNewProfession(e.target.value)}
+                        />
+                        <button type="submit">Confirm</button>
+                </form>
+            }
+
+
             {/* In here we will display the user profession (and ability to change it)
             We will also display the user bio (and ability to change it) */}
 
-            <SectionHeading text="You art"/>
+            <SectionHeading text="You art" />
             {/* In this section we will display a list of categories from the user profile
             These categories will be a toggable button
             The currently toggled categories will form a list of selected categories
@@ -42,7 +88,7 @@ const Profile = () => {
             
             */}
 
-            <SectionHeading text="Your Products"/>
+            <SectionHeading text="Your Products" />
             {/* This will work exactly the same way as your art section, except for products  */}
 
 
