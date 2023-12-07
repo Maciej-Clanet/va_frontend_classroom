@@ -3,11 +3,12 @@ import "./Profile.css"
 import {useEffect, useState} from "react"
 import axios from "axios"
 import {useAuth} from "../Contexts/AuthContext"
+import SectionHeading from "../Components/SectionHeading/SectionHeading"
 
 
 const Profile = () => {
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState()
     const [profileData, setProfileData] = useState()
 
@@ -25,8 +26,31 @@ const Profile = () => {
     
     return(
         <>
-            Profile Test
+            <SectionHeading text="Details"/>
+            {/* In here we will display the user profession (and ability to change it)
+            We will also display the user bio (and ability to change it) */}
+
+            <SectionHeading text="You art"/>
+            {/* In this section we will display a list of categories from the user profile
+            These categories will be a toggable button
+            The currently toggled categories will form a list of selected categories
+            This list will eventually be send to an endpoint so we can get only the artworks from selected categories
+            the artwork we get back from the endpoint will eventually display as thumbnails 
+            
+            We are also going to give an option to add a new category or delete an existing one.
+            We are also going to give an option to add new artworks (will be able to select category later) 
+            
+            */}
+
+            <SectionHeading text="Your Products"/>
+            {/* This will work exactly the same way as your art section, except for products  */}
+
+
+
+
+
             {/* 
+                IGNORE THIS FOR NOW ITS JUST A LIST OF FEATURES PROFILE WILL EVENTUALLY NEED
                 Profile needs handful of features
                 1. See current bio, add one if one doesn't already exist, change the existing one if it does exist.
                 2. Change "profession" of the user
