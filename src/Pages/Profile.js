@@ -44,6 +44,7 @@ const Profile = () => {
             <ProfileInfoField 
                 fieldName="bio" 
                 fieldData={profileData["bio"]}
+                type="big"
                 />
 
             {/* In here we will display the user profession (and ability to change it)
