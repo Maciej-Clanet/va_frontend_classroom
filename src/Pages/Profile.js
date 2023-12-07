@@ -15,6 +15,8 @@ const Profile = () => {
     const [modifyingProfession, setModifyingProfession] = useState(false)
     const [newProfession, setNewProfession] = useState()
 
+    
+
     const { userId, username } = useAuth()
 
     useEffect(() => {
@@ -33,10 +35,22 @@ const Profile = () => {
     }, [])
 
 
-    function updateProfession(){
-        alert("tried to udpate profession")
-        
-        //prevent page from refreshing
+    function updateProfession(event){
+        event.preventDefault();
+
+        const dataToSend = {
+            "user_id" : userId,
+            "profession" : newProfession
+        }
+
+        axios.post("http://localhost:8000/users/UpdateProfile", dataToSend)
+        .then((res) => {
+            window.location.reload()
+        })
+        .catch((err) => {
+            alert(err)
+        })
+
         //axios post call to the update profile endpoint
         //going to give it the id and the new profile
         //once it's done, we refresh the page to load new data
