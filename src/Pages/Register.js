@@ -48,3 +48,10 @@ const Register = () =>{
 }
 
 export default Register;
+
+//100mb
+//1mb = 1024kb
+
+//147kb
+
+//

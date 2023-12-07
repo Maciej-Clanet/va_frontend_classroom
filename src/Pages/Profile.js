@@ -4,18 +4,13 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { useAuth } from "../Contexts/AuthContext"
 import SectionHeading from "../Components/SectionHeading/SectionHeading"
-
+import ProfileInfoField from "../Components/ProfileInfoField/ProfileInfoField"
 
 const Profile = () => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [profileData, setProfileData] = useState()
-
-    const [modifyingProfession, setModifyingProfession] = useState(false)
-    const [newProfession, setNewProfession] = useState()
-
-    
 
     const { userId, username } = useAuth()
 
@@ -35,29 +30,6 @@ const Profile = () => {
     }, [])
 
 
-    function updateProfession(event){
-        event.preventDefault();
-
-        const dataToSend = {
-            "user_id" : userId,
-            "profession" : newProfession
-        }
-
-        axios.post("http://localhost:8000/users/UpdateProfile", dataToSend)
-        .then((res) => {
-            window.location.reload()
-        })
-        .catch((err) => {
-            alert(err)
-        })
-
-        //axios post call to the update profile endpoint
-        //going to give it the id and the new profile
-        //once it's done, we refresh the page to load new data
-    }
-
-
-
     if (isLoading) { return <div>Loading...</div> }
     if (error) { return <div>{error}</div> }
 
@@ -65,27 +37,14 @@ const Profile = () => {
         <>
             {JSON.stringify(profileData)}
             <SectionHeading text="Details" />
-
-            Profession:
-            {profileData["profession"] && <div>{profileData["profession"]}
-                <button onClick={() => setModifyingProfession(!modifyingProfession)}>change profession</button>
-            </div>}
-            {!profileData["profession"] && <div>You don't have a profession set
-                <button onClick={() => setModifyingProfession(!modifyingProfession)}>set profession</button>
-            </div>}
-
-
-            {
-                modifyingProfession && <form onSubmit={updateProfession}>
-                    <input 
-                        type="text" 
-                        value={newProfession}
-                        onChange={(e) => setNewProfession(e.target.value)}
-                        />
-                        <button type="submit">Confirm</button>
-                </form>
-            }
-
+            <ProfileInfoField 
+                fieldName="profession" 
+                fieldData={profileData["profession"]}
+                />
+            <ProfileInfoField 
+                fieldName="bio" 
+                fieldData={profileData["bio"]}
+                />
 
             {/* In here we will display the user profession (and ability to change it)
             We will also display the user bio (and ability to change it) */}
