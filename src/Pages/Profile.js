@@ -2,27 +2,30 @@ import "./Profile.css"
 
 import {useEffect, useState} from "react"
 import axios from "axios"
+import {useAuth} from "../Contexts/AuthContext"
 
 
 const Profile = () => {
-    //create boolean value to keep track if the profile is loading
-    //create value to keep track of any error
-    //create a state value to keep the profile data in
 
-    //get the user id from auth context so we can load the right profile
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState()
+    const [profileData, setProfileData] = useState()
+
+    const {userId, username} = useAuth()
 
     useEffect(() => {
 
+        //make a post axios call to http://localhost:8000/users/profile, send it an OBJECT with a "user_id"
+        //HINT, look at the /docs for backend, when you "try out the endpoint" the data you are sending needs to look exactly how it looks there
+
     },[])
 
-    //if page is loading make display some sort of loading message
-    //if there is an error display the error message
-
-
+    if(isLoading){return <div>Loading...</div>}
+    if(error){return <div>{error}</div>}
+    
     return(
         <>
             Profile Test
-
             {/* 
                 Profile needs handful of features
                 1. See current bio, add one if one doesn't already exist, change the existing one if it does exist.
