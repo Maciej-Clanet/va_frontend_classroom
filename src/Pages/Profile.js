@@ -7,7 +7,7 @@ import SectionHeading from "../Components/SectionHeading/SectionHeading"
 import TagButton from "../Components/TagButton/TagButton"
 import ProfileInfoField from "../Components/ProfileInfoField/ProfileInfoField"
 
-import ProfileBio from "../Components/ProfileBio/ProfileBio"
+import TagList from "../Components/TagList/TagList"
 
 const Profile = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -32,32 +32,33 @@ const Profile = () => {
     },[])
 
 
+    function getArtworksByTags(tags){
+        alert("we will do axios call here to get all artworks that match currently selected tags, current Tags are: " + tags.join(",") )
+    }
+
+    function getProductsByTags(tags){
+        alert("get products by tags: " + tags.join(","))
+    }
 
     if(isLoading){return <div>Loading...</div>}
     if(error){return <div>{error}</div>}
 
     return(
         <>
-            {JSON.stringify(profileData)}
+            {/* {JSON.stringify(profileData)} */}
             <SectionHeading text="Details" />
             <ProfileInfoField fieldName="profession" fieldData={profileData["profession"]}/>
             <ProfileInfoField fieldName="bio" fieldData={profileData["bio"]} type="big"/>
             
             <SectionHeading text="Art Categories" />
-            {
-            profileData["art_categories"].map((category) => {
-                return <button>{category}</button>
-            }) }
+            <TagList tags={profileData["art_categories"]} callback={(tags) => getArtworksByTags(tags)} />
+     
             <button>add new category</button>
             
             <SectionHeading text="Product Categories"/>
-            {
-                profileData["product_categories"].map((category) => {
-                    return <button>{category}</button>
-                })
-            }
+            <TagList tags={profileData["product_categories"]} callback={(tags) => getProductsByTags(tags)} />
+     
             <button>add new category</button>
-            <TagButton text="goober" onClick={() => alert("works")} />
         </>
     )
 }
