@@ -4,6 +4,7 @@ import axios from "axios"
 import { useState , useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import SectionHeading from "../Components/SectionHeading/SectionHeading"
+import TagButton from "../Components/TagButton/TagButton"
 import ProfileInfoField from "../Components/ProfileInfoField/ProfileInfoField"
 
 import ProfileBio from "../Components/ProfileBio/ProfileBio"
@@ -56,6 +57,7 @@ const Profile = () => {
                 })
             }
             <button>add new category</button>
+            <TagButton text="goober" onClick={() => alert("works")} />
         </>
     )
 }

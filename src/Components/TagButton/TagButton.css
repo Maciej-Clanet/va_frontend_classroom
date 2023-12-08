@@ -1,0 +1,12 @@
+.tag-button{
+    
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 0px 8px;
+
+    &.selected{
+        background-color: var(--primary-color);
+    }
+}
