@@ -4,6 +4,7 @@ import axios from "axios"
 import { useState , useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import SectionHeading from "../Components/SectionHeading/SectionHeading"
+import ProfileInfoField from "../Components/ProfileInfoField/ProfileInfoField"
 
 import ProfileBio from "../Components/ProfileBio/ProfileBio"
 
@@ -37,7 +38,9 @@ const Profile = () => {
     return(
         <>
             {JSON.stringify(profileData)}
-           <ProfileBio bio={profileData["bio"]} />
+            <SectionHeading text="Details" />
+            <ProfileInfoField fieldName="profession" fieldData={profileData["profession"]}/>
+            <ProfileInfoField fieldName="bio" fieldData={profileData["bio"]} type="big"/>
             
             <SectionHeading text="Art Categories" />
             {

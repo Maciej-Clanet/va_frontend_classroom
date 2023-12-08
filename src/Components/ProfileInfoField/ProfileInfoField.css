@@ -1,0 +1,47 @@
+.profile-info-field{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    margin: auto;
+    padding: 16px 0px;
+
+    & form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        & input, textarea{
+            width: 100%;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            background: none;
+            color: var(--text-color);
+            padding: 16px;
+            resize: vertical;
+        }
+    }
+}
+
+.info-field-buttons-row{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.profile-info-data-container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.profile-info-data{
+    border: 2px solid var(--primary-color);
+    border-radius:8px;
+    width: 100%;
+    padding: 16px;
+}
