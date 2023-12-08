@@ -5,7 +5,7 @@ import { useAuth } from "../../Contexts/AuthContext";
 
 const ProfileInfoField = ({ fieldName, fieldData, type = "small" }) => {
     const [isEditing, setIsEditing] = useState(false)
-    const [newData, setNewData] = useState()
+    const [newData, setNewData] = useState("")
 
     const { userId } = useAuth()
 

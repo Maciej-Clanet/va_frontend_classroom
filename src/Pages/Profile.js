@@ -24,9 +24,6 @@ const Profile = () => {
                 setError(err.response?.data?.detail || err.message || "An Unknown error occured")
                 setIsLoading(false)
             })
-        //make a post axios call to http://localhost:8000/users/profile, send it an OBJECT with a "user_id"
-        //HINT, look at the /docs for backend, when you "try out the endpoint" the data you are sending needs to look exactly how it looks there
-
     }, [])
 
 
@@ -46,10 +43,7 @@ const Profile = () => {
                 fieldData={profileData["bio"]}
                 type="big"
                 />
-
-            {/* In here we will display the user profession (and ability to change it)
-            We will also display the user bio (and ability to change it) */}
-
+                
             <SectionHeading text="You art" />
             {/* In this section we will display a list of categories from the user profile
             These categories will be a toggable button
