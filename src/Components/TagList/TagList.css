@@ -2,4 +2,18 @@
     display: flex;
     gap: 16px;
     justify-content: center;
+    flex-wrap: wrap;
+
+    & input{
+        background: none;
+        color: var(--text-color);
+        padding: 0px 8px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+    }
+}
+
+.new-tag-form{
+    display: flex;
+    gap: 16px;
 }

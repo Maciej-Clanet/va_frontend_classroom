@@ -1,7 +1,7 @@
 import "./IconButtonTransparent.css"
 
-const IconButtonTransparent = ({text, icon, onClick}) =>{
-    return <button className="icon-button-transparent text-label" onClick={onClick}>{icon}{text}</button>
+const IconButtonTransparent = ({text, icon, onClick, style}) =>{
+    return <button className="icon-button-transparent text-label" style={style} onClick={onClick}>{icon}{text}</button>
 }
 
 export default IconButtonTransparent

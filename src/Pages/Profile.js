@@ -8,6 +8,7 @@ import TagButton from "../Components/TagButton/TagButton"
 import ProfileInfoField from "../Components/ProfileInfoField/ProfileInfoField"
 
 import TagList from "../Components/TagList/TagList"
+import PrimaryIconButton from "../Components/PrimaryIconButton/PrimaryIconButton"
 
 const Profile = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -33,11 +34,11 @@ const Profile = () => {
 
 
     function getArtworksByTags(tags){
-        alert("we will do axios call here to get all artworks that match currently selected tags, current Tags are: " + tags.join(",") )
+        // alert("we will do axios call here to get all artworks that match currently selected tags, current Tags are: " + tags.join(",") )
     }
 
     function getProductsByTags(tags){
-        alert("get products by tags: " + tags.join(","))
+        // alert("get products by tags: " + tags.join(","))
     }
 
     if(isLoading){return <div>Loading...</div>}
@@ -52,8 +53,7 @@ const Profile = () => {
             
             <SectionHeading text="Art Categories" />
             <TagList tags={profileData["art_categories"]} callback={(tags) => getArtworksByTags(tags)} />
-     
-            <button>add new category</button>
+            <PrimaryIconButton text="add new category"/>
             
             <SectionHeading text="Product Categories"/>
             <TagList tags={profileData["product_categories"]} callback={(tags) => getProductsByTags(tags)} />
